@@ -3,7 +3,7 @@ server {
     listen [::]:80; #IPv6
 
     # Host that will serve this project.
-    server_name repo.example.com;
+    server_name ENV_REPO_HOST;
 
     # The location of repo directory.
     root /var/www/repo.solder;

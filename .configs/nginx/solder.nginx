@@ -7,7 +7,7 @@ server {
     listen [::]:80; #IPv6
 
     # Host that will serve this project.
-    server_name solder.example.com;
+    server_name ENV_SOLDER_HOST;
 
     # The location of our projects public directory.
     root /var/www/technicsolder/public;

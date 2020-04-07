@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   postgres:
@@ -7,15 +7,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.configs/postgres/.env
-
-  gfs:
-    build: ./gfs
-    image: leonime/gfs
-    environment:
-      - REPO_USER=username
-      - REPO_PASSWORD=password
-    volumes:
-    - solder_repo:/var/www/repo.solder
 
   solder:
     build: ./solder
@@ -31,6 +22,15 @@ services:
     depends_on:
       - postgres
 
+  gfs:
+    build: ./gfs
+    image: leonime/gfs
+    environment:
+      - REPO_USER=username
+      - REPO_PASSWORD=password
+    volumes:
+    - solder_repo:/var/www/repo.solder
+
   nginx:
     image: nginx:1-alpine
     volumes:
@@ -39,8 +39,6 @@ services:
       - ./.configs/nginx/up.nginx:/etc/nginx/conf.d/up.conf
       - solder_public:/var/www/technicsolder/public/
       - solder_repo:/var/www/repo.solder
-    env_file:
-      ./.configs/solder/.env
     ports:
       - 80:80
     depends_on:
