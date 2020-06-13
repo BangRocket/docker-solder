@@ -10,7 +10,7 @@ services:
 
   gfs:
     build: ./gfs
-    image: leonime/gfs
+    image: heidornj/gfs
     environment:
       - REPO_USER=username
       - REPO_PASSWORD=password
@@ -19,8 +19,8 @@ services:
 
   solder:
     build: ./solder
-    image: leonime/solder
-    container_name: solder
+    image: heidornj/solder
+    container_name: docker-solder
     restart: on-failure
     env_file:
       - ./.configs/solder/.env
